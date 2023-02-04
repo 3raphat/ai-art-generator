@@ -23,7 +23,7 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import { Form, Formik } from 'formik'
-import promptData from '../../promptData.json'
+import promptData from '../promptData.json'
 import { RepeatIcon } from '@chakra-ui/icons'
 
 const configuration = new Configuration({
