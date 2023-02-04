@@ -21,6 +21,8 @@ import {
   Stack,
   Select,
   useToast,
+  ScaleFade,
+  SlideFade,
 } from '@chakra-ui/react'
 import { Form, Formik } from 'formik'
 import promptData from '../promptData.json'
@@ -114,7 +116,11 @@ export default function Home() {
       <Box maxW='container.xl' mx='auto'>
         <Stack textAlign='center' spacing={0} mb={12}>
           <Heading fontSize='6xl' fontWeight='black'>
-            AI <Text as='span' bgGradient='linear(to-r, purple.300, pink.300, red.300)' bgClip='text'>Art</Text> Generator
+            AI{' '}
+            <Text as='span' bgGradient='linear(to-r, purple.300, pink.300, red.300)' bgClip='text'>
+              Art
+            </Text>{' '}
+            Generator
           </Heading>
           <Text fontSize='lg'>SK Computer Club</Text>
         </Stack>
@@ -123,7 +129,12 @@ export default function Home() {
             <FormControl mb={4}>
               <FormLabel>Prompt</FormLabel>
               <InputGroup gap={2}>
-                <Input type='text' value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder='An astronaut riding a horse in a digital art style...' />
+                <Input
+                  type='text'
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                  placeholder='An astronaut riding a horse in a digital art style...'
+                />
                 <Button
                   type='submit'
                   isLoading={loading}
@@ -147,7 +158,9 @@ export default function Home() {
         {(image || loading) && (
           <Flex justify='space-between'>
             <Skeleton isLoaded={!loading}>
-              <Image src={image} alt='' width={512} height={512} fallbackSrc='https://via.placeholder.com/1024' borderRadius='md' />
+              <ScaleFade initialScale={0.9} in={image}>
+                <Image src={image} alt='' width={512} height={512} fallbackSrc='https://via.placeholder.com/1024' borderRadius='md' />
+              </ScaleFade>
               <FormControl mt={4}>
                 {/* <FormLabel>Frame</FormLabel>
                 <InputGroup gap={2}>
@@ -172,19 +185,21 @@ export default function Home() {
             </Skeleton>
             {imagePreview && !loading && (
               <>
-                <Box my={232}>
-                  <Icon viewBox='0 0 24 24' boxSize={12}>
+                <SlideFade in={imagePreview} offsetX='-20px'>
+                  <Icon viewBox='0 0 24 24' boxSize={12} mt={232}>
                     <svg xmlns='http://www.w3.org/2000/svg' fill='none' stroke-width='2' stroke='currentColor' class='w-6 h-6'>
                       <path stroke-linecap='round' stroke-linejoin='round' d='M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3' />
                     </svg>
                   </Icon>
-                </Box>
+                </SlideFade>
                 <Flex justify='space-between'>
                   <Box>
                     <div className='hidden'>
                       <Image src={imagePreview} alt='' width={1240} ref={componentRef} />
                     </div>
-                    <Image src={imagePreview} alt='' height={512} borderRadius='md' />
+                    <ScaleFade initialScale={0.9} in={image}>
+                      <Image src={imagePreview} alt='' height={512} borderRadius='md' />
+                    </ScaleFade>
                     <ReactToPrint
                       trigger={() => (
                         <Button mt={4} w='full' colorScheme='yellow'>
