@@ -12,9 +12,11 @@ const Layout = ({ children, ...props }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Flex direction='column' minH='100vh'>
-        <Box flexGrow={1} {...props}>{children}</Box>
+        <Box flexGrow={1} {...props}>
+          {children}
+        </Box>
       </Flex>
-        <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

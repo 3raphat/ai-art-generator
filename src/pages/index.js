@@ -9,6 +9,7 @@ import {
   FormControl,
   FormLabel,
   FormHelperText,
+  Icon,
   Input,
   InputGroup,
   Button,
@@ -109,17 +110,20 @@ export default function Home() {
   }
 
   return (
-    <Layout py={8}>
+    <Layout py={24}>
       <Box maxW='container.xl' mx='auto'>
-        <Heading textAlign='center' fontSize='6xl' fontWeight='extrabold' mb={8} bgGradient='linear(to-r, #f953c6, #a8c0ff)' bgClip='text'>
-          AI Art Generator
-        </Heading>
+        <Stack textAlign='center' spacing={0} mb={12}>
+          <Heading fontSize='6xl' fontWeight='black'>
+            AI <Text as='span' bgGradient='linear(to-r, purple.300, pink.300, red.300)' bgClip='text'>Art</Text> Generator
+          </Heading>
+          <Text fontSize='lg'>SK Computer Club</Text>
+        </Stack>
         <Formik onSubmit={handleSubmit}>
           <Form>
             <FormControl mb={4}>
               <FormLabel>Prompt</FormLabel>
               <InputGroup gap={2}>
-                <Input type='text' value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder='An astronaut ridding a horse...' />
+                <Input type='text' value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder='An astronaut riding a horse in a digital art style...' />
                 <Button
                   type='submit'
                   isLoading={loading}
@@ -168,8 +172,12 @@ export default function Home() {
             </Skeleton>
             {imagePreview && !loading && (
               <>
-                <Box mt={206}>
-                  <Image src='/assets/right-angle-key-100.png' alt='' height={100} />
+                <Box my={232}>
+                  <Icon viewBox='0 0 24 24' boxSize={12}>
+                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' stroke-width='2' stroke='currentColor' class='w-6 h-6'>
+                      <path stroke-linecap='round' stroke-linejoin='round' d='M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3' />
+                    </svg>
+                  </Icon>
                 </Box>
                 <Flex justify='space-between'>
                   <Box>
@@ -194,4 +202,12 @@ export default function Home() {
       </Box>
     </Layout>
   )
+}
+
+const RightArrow = (props) => {
+  ;<Icon {...props}>
+    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'>
+      <path stroke-linecap='round' stroke-linejoin='round' d='M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3' />
+    </svg>
+  </Icon>
 }

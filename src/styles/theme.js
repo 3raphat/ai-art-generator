@@ -3,8 +3,8 @@ import { extendTheme } from '@chakra-ui/react'
 const components = {
   Heading: {
     baseStyle: {
-      // fontFamily: '',
-      fontWeight: '700',
+      fontFamily: '',
+      fontWeight: '900',
     },
   },
 }
@@ -27,6 +27,7 @@ const styles = {
 
 const config = {
   initialColorMode: 'light',
+  useSystemColorMode: false,
 }
 
 const theme = extendTheme({ config, components, styles })
